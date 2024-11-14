@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculab - The exciting way to learn calculus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="bg-custom-gradient min-h-[400vh]">
+        <div class="relative">
+            <div class="content">
+                <section class="h-screen flex flex-col justify-start">
+                    <header class="py-6 px-10 flex justify-between items-center">
+                        <div class="text-white font-bold text-5xl">
+                            <img src="../../media/images/Logo_Calculab.svg" alt="Logo Calculab" class="inline-block">Calculab
+                        </div>
+                        <div class="relative inline-block language-selector">
+                            <!-- Language Option -->
+                            <div class="flex items-center border border-white rounded-full px-4 py-2 bg-transparent text-white">
+                                <span class="mr-4">Language</span>
+                                <div class="h-5 border-l border-white mx-2"></div>
+                                <div class="flex items-center ml-2 cursor-pointer" id="language-toggle">
+                                    <span class="text-white px-4 py-2 rounded-r-full">English</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        
+                            <!-- Dropdown menu -->
+                            <div class="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden language-dropdown">
+                                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left" role="menuitem">English</button>
+                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left" role="menuitem">Bahasa Indonesia</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </header>
+                    <div class="relative w-full h-auto flex justify-center items-center px-10 py-4 mt-16">
+                        <!-- Bagian Teks -->
+                        <div class="w-[497px] h-auto flex flex-col justify-start items-start gap-10 ml-80">
+                            <h1 class="text-7xl font-bold text-white leading-snug">Explore The Universe of Calculus!</h1>
+                            <div class="relative">
+                                <button onclick="window.location.href='login.html'" class="bg-[#dc1f84] text-white text-3xl font-bold px-10 py-4 rounded-[30px] hover:bg-[#6D2476] transition duration-300">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <!-- Bagian Gambar -->
+                        <div class="w-1/2 flex justify-center">
+                             <img src="../../media/images/Rocket_Blackhole.svg" alt="Rocket and Blackhole" class="max-w-full z-20">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section class="h-screen flex flex-col md:flex-row items-center justify-center px-8 py-16 md:px-24">
+            <div class="text-white w-full md:w-1/2 mb-8 md:mb-0 ml-10">
+                <h2 class="text-3xl md:text-7xl font-bold mb-4">Attractive. Interactive. Effective.</h2>
+                <p class="text-lg md:text-4xl pr-3">Learning calculus with Calculab is engaging, interactive, and effective! Dive into small, focused simulations that make complex calculus concepts easier to understand while building your skills step by step.</p>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="../../media/images/Astronaut.svg" alt="Astronaut Image" class="w-[50vw] max-w-[400px]">
+            </div>
+        </section>
+        <section class="h-screen flex flex-col-reverse md:flex-row items-center justify-center px-8 py-16 md:px-20">
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="../../media/images/Student_Learning.svg" alt="Illustration Image" class="w-[70vw] max-w-[500px]">
+            </div>
+            <div class="text-black w-full md:w-1/2 mb-8 md:mb-0">
+                <h2 class="text-3xl md:text-6xl font-bold mb-4">Deepen Your Knowledge</h2>
+                <p class="text-lg md:text-2xl">Enhance your learning experience by studying detailed reading modules that cover essential calculus principles. These materials are crafted to complement the simulations and strengthen your conceptual understanding.</p>
+            </div>
+        </section>
+        <section class="h-screen flex flex-col md:flex-row items-center justify-between px-8 py-16 md:px-20">
+            <div class="text-black w-full md:w-1/2 mb-8 md:mb-0">
+                <h2 class="text-3xl md:text-6xl font-bold mb-4">Stay Motivated and Compete</h2>
+                <p class="text-lg md:text-2xl">Learning calculus has never been this exciting! With interactive elements, real-time feedback, and a leaderboard that showcases your progress compared to others, you’ll stay motivated to learn more and push your skills to the next level.</p>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="../../media/images/Winner.svg" alt="Competition Image" class="w-[50vw] max-w-[400px]">
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#dc1f84] py-20 text-white text-center">
+        <h3 class="text-4xl font-bold mb-6">What is Calculab?</h3>
+        <p class="text-lg md:text-2xl mb-12 max-w-4xl mx-auto">Calculab is an innovative virtual lab designed to make learning calculus interactive, competitive, and fun. With engaging simulations, gamified quizzes, and a leaderboard to challenge your peers, Calculab transforms complex mathematical concepts into an enjoyable and effective learning journey.</p>
+        <hr class="border-white border-t-2 w-4/5 mx-auto mb-12">
+        <div class="flex justify-around items-center mb-12">
+            <div>
+                <h4 class="text-2xl font-bold mb-4">Contact Us</h4>
+                <div class="flex space-x-4">
+                    <a href="https://x.com/TjapDjae77" target="_blank"><img src="../../media/images/Twitter_Circled.svg" alt="Twitter" class="w-16"></a>
+                    <a href="https://www.instagram.com/farras_rayhan" target="_blank"><img src="../../media/images/Instagram_Circled.svg" alt="Instagram" class="w-16"></a>
+                    <a href="https://www.youtube.com/@TjapDjae77" target="_blank"><img src="../../media/images/YouTube.svg" alt="YouTube" class="w-16"></a>
+                    <a href="https://github.com/TjapDjae77" target="_blank"><img src="../../media/images/GitHub.svg" alt="GitHub" class="w-16"></a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <h4 class="text-2xl font-bold mb-4">Language Options</h4>
+                <div class="flex justify-between gap-7">
+                    <p class="text-xl">Bahasa Indonesia</p>
+                    <p class="text-xl">|</p>
+                    <p class="text-xl">English</p>
+                </div>
+            </div>
+        </div>
+        <hr class="border-white border-t-2 w-4/5 mx-auto mb-12">
+        <div>
+            <p class="text-xl font-bold">© 2024 All rights reserved. Made by Rajendra Farras Rayhan</p>
+        </div>
+    </footer>
+     <script src="../js/index.js"></script>
+</body>
+</html>
