@@ -34,3 +34,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('confirm_password', None)
         user = User.objects.create_user(**validated_data)
         return user
+    
+
+class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['username', 'email', 'score', 'level_completed']

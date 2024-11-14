@@ -4,9 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculab - Roadmap</title>
+    <script src="../js/auth.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <h1>HOREEE LOGIN BERHASIL</h1>
+<body class="min-h-[240vh] bg-gradient-to-b from-blue-400 via-indigo-100 to-purple-200 flex">
+    <!-- Sidebar -->
+    <aside class="w-1/5 md:w-1/3 bg-[#6D2476] text-white h-screen sticky top-0 flex flex-col p-6 px-16">
+        <a href="roadmap.html"><h1 class="text-6xl font-bold mb-32">Calculab</h1></a>
+        <nav class="flex flex-col space-y-8 gap-12">
+            <a href="roadmap.html" class="flex items-center space-x-3 text-5xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-4 transition-colors duration-300">
+                <img src="../../media/images/bookmark.svg" alt="Learn Icon" class="w-6 h-6 md:w-14 md:h-14">
+                <span>Learn</span>
+            </a>
+            <a href="leaderboard.html" class="flex items-center space-x-3 text-5xl rounded-full p-4 transition-colors duration-300 hover:bg-[#D8D8F6] hover:text-[#6D2476] active:bg-[#D8D8F6] active:text-[#6D2476]">
+                <img src="../../media/images/medal.svg" alt="Leaderboard Icon" class="md:w-14 md:h-14">
+                <span>Leaderboard</span>
+            </a>
+            <a href="profile.html" class="flex items-center space-x-3 text-5xl rounded-full p-4 transition-colors duration-300 hover:bg-[#D8D8F6] hover:text-[#6D2476] active:bg-[#D8D8F6] active:text-[#6D2476]">
+                <img src="../../media/images/profile.svg" alt="Profile Icon" class="md:w-14 md:h-14">
+                <span>Profile</span>
+            </a>
+            <div class="relative group">
+                <div class="flex items-center space-x-3 text-5xl p-4 cursor-pointer">
+                    <img src="../../media/images/More.svg" alt="More Icon" class="md:w-14 md:h-14">
+                    <span>More</span>
+                </div>
+                
+                <!-- Dropdown Menu (Visible on Hover) -->
+                <div class="absolute right-[-140px] top-0 mt-8 hidden group-hover:flex flex-col bg-white text-black rounded-lg shadow-lg py-2 w-40 z-20">
+                    <a href="settings.html" class="px-4 py-2 hover:bg-gray-200">Settings</a>
+                    <a href="#" id="logoutButton" class="px-4 py-2 hover:bg-gray-200">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="w-4/5 md:w-4/5 flex flex-col items-center pt-10 pb-20 relative overflow-hidden">
+
+        <!-- Roadmap Timeline -->
+        <div class="relative w-2/3 flex flex-col items-center bottom-0 -mt-28">
+
+            <!-- Stage 4 -->
+            <button disabled class="w-16 h-16 md:w-24 md:h-24 bg-gray-500 text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-not-allowed opacity-70">
+                4
+            </button>
+
+            <!-- Connecting Line -->
+            <div class="w-1 h-48 bg-gray-500"></div>
+
+            <!-- Coming Soon Title -->
+            <div class="text-center text-gray-600 text-3xl md:text-5xl my-10">Coming soon. Stay tuned!</div>
+            
+            <!-- Connecting Line -->
+            <div class="w-1 h-48 bg-[#DC1F84]"></div>
+
+            <!-- Stage 3 -->
+            <button onclick="openPopup('level3.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+                3
+            </button>
+
+            <!-- Connecting Line -->
+            <div class="w-1 h-96 bg-[#DC1F84]"></div>
+
+             <!-- Stage 2 -->
+             <button onclick="openPopup('level2.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+                2
+            </button>
+
+            <!-- Connecting Line -->
+            <div class="w-1 h-96 bg-[#DC1F84]"></div>
+
+            <!-- Stage 1 -->
+            <button onclick="openPopup('level1.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+                1
+            </button>
+
+            <!-- Connecting Line -->
+            <div class="w-1 h-96 bg-[#DC1F84]"></div>
+        </div>
+
+        <!-- Background Factory -->
+        <div class="absolute bottom-[-50px] left-[-106px] w-[110%] z-0 mt-3">
+            <img src="../../media/images/Factory.svg" alt="Factory Background" class="w-full h-auto">
+        </div>
+    </main>
+
+    <!-- Popup Modal -->
+    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white w-80 md:w-96 p-6 rounded-lg relative">
+            <h2 class="text-2xl font-semibold mb-4">Start Level</h2>
+            <p class="mb-6">Do you want to play this level?</p>
+            <button id="playButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Play</button>
+            <button onclick="closePopup()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</button>
+        </div>
+    </div>
+    <script src="../js/roadmap.js"></script>
 </body>
 </html>

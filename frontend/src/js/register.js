@@ -1,4 +1,6 @@
+checkAuthForPublicPages();
 document.addEventListener('DOMContentLoaded', function () {
+
     const usernameField = document.getElementById('username');
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');

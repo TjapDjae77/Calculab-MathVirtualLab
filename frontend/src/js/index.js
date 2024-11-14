@@ -1,3 +1,4 @@
+checkAuthForPublicPages()
 document.addEventListener('DOMContentLoaded', () => {
     const languageToggle = document.querySelector('.language-selector #language-toggle');
     const languageDropdown = document.querySelector('.language-selector .language-dropdown');

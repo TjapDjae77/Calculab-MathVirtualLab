@@ -1,4 +1,6 @@
+checkAuthForPublicPages();
 document.addEventListener('DOMContentLoaded', function () {
+    
     const usernameField = document.getElementById('username_email');
     const passwordField = document.getElementById('password');
     const signInButton = document.getElementById('signInButton');
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
+                localStorage.setItem('token', data.data.token);
                 window.location.href = 'roadmap.html';
             } else if (data.status === 'error') {
                 errorMessageContainer.textContent = data.message;
@@ -66,4 +69,20 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMessageContainer.textContent = 'An unexpected error occurred. Please try again later.';
         });
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutButton = document.getElementById('logoutButton');
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            // Hapus token dari localStorage
+            localStorage.removeItem('token');
+
+            // Redirect ke halaman login
+            window.location.href = 'login.html';
+        });
+    }
 });
