@@ -78,10 +78,10 @@
         <div class="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12">
             <div class="w-full max-w-md">
                 <h2 class="text-xl lg:text-3xl font-bold mb-4 lg:mb-6">Register</h2>
-                <form action="#" method="post" class="space-y-4">
+                <form action="#" method="post" id="registerForm" class="space-y-4">
                     <div>
-                        <label for="name" class="sr-only">Enter your username</label>
-                        <input type="text" id="name" placeholder="Enter your username" class="w-full border border-gray-300 p-2 lg:p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1CB5E0]">
+                        <label for="username" class="sr-only">Enter your username</label>
+                        <input type="text" id="username" placeholder="Enter your username" class="w-full border border-gray-300 p-2 lg:p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1CB5E0]">
                     </div>
                     <div>
                         <label for="email" class="sr-only">Enter your email</label>
@@ -101,6 +101,7 @@
                             <img id="toggleIcon2" src="../../media/images/Hide.svg" alt="Toggle Password Visibility Icon" class="w-5 lg:w-6">
                         </button>
                     </div>
+                    <div id="errorMessage" class="text-red-500 text-sm"></div>
                     <button type="submit" id="registerButton" class="w-full bg-gray-400 text-white p-2 lg:p-3 rounded-md mt-4 cursor-not-allowed" disabled>Sign up</button>
                 </form>
                 <div class="mt-4 text-center">
