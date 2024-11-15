@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import CustomTokenObtainPairView
+from .views import CustomTokenObtainPairView, log_frontend
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/login/', CustomTokenObtainPairView.as_view(), name='custom_token_obtain_pair'),
     path('api/accounts/', include('accounts.urls')),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/log-frontend/', log_frontend, name='log_frontend'),
 ]

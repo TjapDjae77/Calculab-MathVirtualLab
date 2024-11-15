@@ -31,7 +31,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 username = user_obj.username
                 user = authenticate(request=self.context.get('request'), username=username, password=password)
             except User.DoesNotExist:
-                raise serializers.ValidationError({"status": "error", "message": "Invalid credentials"})
+                pass
         
         if user is not None:
             # Jika autentikasi berhasil, tetapkan user pada serializer
@@ -47,7 +47,42 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             return data
         else:
             # Jika autentikasi gagal, kembalikan pesan error
-            raise serializers.ValidationError({"status": "error", "message": "Invalid credentials"})
+            raise serializers.ValidationError({"status": "error", "message": "Incorrect username or password"})
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        except serializers.ValidationError as e:
+            return Response({
+                'status': 'error',
+                'message': 'Incorrect username or password'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        
+@csrf_exempt
+def log_frontend(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            log_level = data.get('level', 'info').lower()
+            message = data.get('message', '')
+
+            if log_level == 'debug':
+                logger.debug(message)
+            elif log_level == 'warning':
+                logger.warning(message)
+            elif log_level == 'error':
+                logger.error(message)
+            else:
+                logger.info(message)
+                logger.info(f"Response data: {data}")
+
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            logger.error(f"Failed to log frontend message: {e}")
+            return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)

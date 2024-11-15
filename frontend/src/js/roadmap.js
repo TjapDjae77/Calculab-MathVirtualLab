@@ -1,3 +1,14 @@
+function checkAuthForProtectedPages() {
+    const token = localStorage.getItem('token');
+    console.log('Token found in checkAuthForProtectedPages:', token);
+    logToServer('info', `Token found in checkAuthForProtectedPages: ${token}`)
+    if (!token) {
+        console.log('No token, redirecting to login.html');
+        logToServer('info', 'Redirecting to login.html');
+        window.location.href = 'login.html';
+    }
+}
+
 checkAuthForProtectedPages();
 
 let selectedLevelUrl = '';
@@ -13,11 +24,6 @@ function closePopup() {
     document.getElementById('popupModal').classList.add('hidden');
 }
 
-// Redirect to level on clicking Play
-document.getElementById('playButton').addEventListener('click', function () {
-    window.location.href = selectedLevelUrl;
-});
-
 // Close popup if clicking outside of it
 window.addEventListener('click', function (event) {
     const popupModal = document.getElementById('popupModal');
@@ -26,7 +32,22 @@ window.addEventListener('click', function (event) {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+    const token = await ensureValidAccessToken();
+
+    if (!token) {
+        window.location.href = 'login.html'; // Redirect jika tidak ada token
+        return;
+    }
+
+    const playButton = document.getElementById('playButton');
+    if (playButton) {
+        playButton.addEventListener('click', function () {
+            window.location.href = selectedLevelUrl;
+        });
+    } else {
+        console.error("Element with id 'playButton' not found.");
+    }
 
     const logoutButton = document.getElementById('logoutButton');
 

@@ -55,34 +55,38 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify({ username: usernameField.value, password: passwordField.value }),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error('Incorrect username or password');
+                });
+            }
+            return response.json();
+        })
         .then(data => {
+            logToServer('info', `Response data: ${JSON.stringify(data)}`); // Tambahkan log ini
             if (data.status === 'success') {
-                localStorage.setItem('token', data.data.token);
-                window.location.href = 'roadmap.html';
+                const token = data.data.token;
+                const refreshToken = data.refresh;
+                if (token && refreshToken) {
+                    localStorage.setItem('token', token); // Access token
+                    localStorage.setItem('refresh_token', refreshToken); // Refresh token
+                    logToServer('info', 'Tokens saved successfully, redirecting to roadmap.html...');
+                    window.location.href = 'roadmap.html';
+                    logToServer('info', 'After setting window.location.href');
+                } else {
+                    logToServer('error', 'Missing tokens in response, staying on login page.');
+                    errorMessageContainer.textContent = 'Login failed, please try again.';
+                }
             } else if (data.status === 'error') {
+                logToServer('error', `Login failed: ${data.message}`);
                 errorMessageContainer.textContent = data.message;
             }
         })
         .catch(error => {
+            logToServer('error', `Unexpected error: ${error.message}`);
             console.error('Error:', error);
-            errorMessageContainer.textContent = 'An unexpected error occurred. Please try again later.';
+            errorMessageContainer.textContent = error.message;
         });
     });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const logoutButton = document.getElementById('logoutButton');
-
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            
-            // Hapus token dari localStorage
-            localStorage.removeItem('token');
-
-            // Redirect ke halaman login
-            window.location.href = 'login.html';
-        });
-    }
 });

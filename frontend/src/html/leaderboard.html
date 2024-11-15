@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculab - Profile</title>
-    <script src="../js/auth.js"></script>
-    <script src="../js/profile.js"></script>
+    <title>Calculab - Leaderboard</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-gradient-to-b from-blue-400 via-indigo-100 to-purple-200 flex">
@@ -26,7 +24,7 @@
                 </div>
             </div>
             <div class="relative group">
-                <a href="leaderboard.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-2xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-4 transition-colors duration-300">
+                <a href="leaderboard.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-2xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-4 transition-colors duration-300">
                     <img src="../../media/images/medal.svg" alt="Leaderboard Icon" class="w-8 md:w-14">
                     <span class="hidden lg:block">Leaderboard</span>
                 </a>
@@ -35,7 +33,7 @@
                 </div>
             </div>
             <div class="relative group">
-                <a href="profile.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-4 transition-colors duration-300">
+                <a href="profile.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-4 transition-colors duration-300">
                     <img src="../../media/images/profile.svg" alt="Profile Icon" class="w-8 md:w-14">
                     <span class="hidden lg:block">Profile</span>
                 </a>
@@ -59,42 +57,10 @@
 
     <!-- Main Content for Profile -->
     <main class="w-4/5 md:w-4/5 flex flex-col items-center justify-center h-screen pt-10 pb-20 relative">
-        <section class="w-full max-w-4xl bg-white rounded-lg shadow-md p-8 md:p-12">
-            <h2 class="text-4xl font-bold text-[#6D2476] mb-8">Profile</h2>
-            <div id="profile-info" class="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-12">
-                <!-- Avatar or Profile Picture -->
-                <div class="w-24 h-24 md:w-40 md:h-40 rounded-full bg-[#D8D8F6] flex items-center justify-center text-5xl font-bold text-white">
-                    <span>A</span> <!-- Initial or Placeholder -->
-                </div>
-                <!-- User Information -->
-                <div>
-                    <p class="text-2xl font-semibold text-gray-700">Username: <span class="font-bold" id="username">-</span></p>
-                    <p class="text-2xl font-semibold text-gray-700">Email: <span class="font-bold" id="email">-</span></p>
-                </div>
-            </div>
-            <!-- Edit Profile Button -->
-            <div class="flex justify-center md:justify-start">
-                <button class="bg-[#DC1F84] text-white px-8 py-3 rounded-full text-xl font-semibold transition-colors duration-300 hover:bg-[#A0185F]">
-                    Edit Profile
-                </button>
-            </div>
-
-            <div class="bg-[#D8D8F6] p-6 rounded-lg shadow-md mt-6 mb-6 w-full">
-                <h2 class="text-2xl font-semibold mb-4 text-center">Your Statistics</h2>
-                <div class="flex justify-around">
-                    <div class="text-center">
-                        <p class="text-4xl font-bold text-[#DC1F84]" id="level-completed">-</p>
-                        <p class="text-gray-600" id="levelCompleted">Levels Completed</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-4xl font-bold text-[#1CB5E0]" id="score">-</p>
-                        <p class="text-gray-600">Total Score</p>
-                    </div>
-                </div>
-            </div>
-            
+        <section class="w-full max-w-4xl bg-white rounded-lg shadow-md p-8 md:p-12 justify-center flex items-center">
+            <h2 class="text-4xl font-bold text-[#6D2476] mb-8">Leaderboards are currently unavailable</h2>
         </section>
     </main>
-    
+    <script src="../js/profile.js"></script>
 </body>
 </html>
