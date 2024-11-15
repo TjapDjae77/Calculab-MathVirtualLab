@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -54,3 +55,28 @@ class ProfileView(generics.RetrieveAPIView):
         profile = self.get_object()
         serializer = self.get_serializer(profile)
         return Response(serializer.data)
+    
+@api_view(['POST'])
+def update_score(request):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        new_score = request.data.get('score', 0)
+
+        try:
+            new_score = int(new_score)
+            profile.score += new_score
+            profile.save()
+            return Response({
+                'status': 'success',
+                'message': 'Score updated successfully',
+                'current_score': profile.score
+            }, status=status.HTTP_200_OK)
+        except ValueError:
+            return Response({
+                'status': 'error',
+                'message': 'Invalid score value'
+            }, status=status.HTTP_400_BAD_REQUEST)
+    return Response({
+        'status': 'error',
+        'message': 'Authentication required'
+    }, status=status.HTTP_401_UNAUTHORIZED)
