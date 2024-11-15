@@ -1,0 +1,21 @@
+---
+application:
+  project_root: backend  # Folder yang berisi aplikasi Django (sesuaikan dengan struktur folder Anda)
+  entrypoint: manage.py   # File entry point Django
+
+app:
+  domain: indonesia48.my.id  # Ganti dengan domain Anda
+  path: /home/indones3/repositories/Calculab-MathVirtualLab                 # Path root aplikasi
+
+environment:
+  - DJANGO_SETTINGS_MODULE=backend_calculab.settings  # Sesuaikan dengan nama modul settings Django Anda
+  - DATABASE_URL=${DATABASE_URL}                      # Jika Anda menggunakan PostgreSQL atau MySQL
+  - SECRET_KEY=${SECRET_KEY}                          # Tambahkan secret key Anda di sini atau di environment hosting
+  - DEBUG=False                                       # Set False untuk production
+
+build:
+  pip_install:                                       # Perintah untuk menginstal dependencies
+    - requirements.txt
+
+deploy:
+  restart: "uwsgi"                                   # Restart server dengan uwsgi setelah deploy

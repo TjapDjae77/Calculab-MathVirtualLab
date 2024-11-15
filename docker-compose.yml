@@ -12,30 +12,33 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    env_file:
+      - .env
 
   backend:
     build:
       context: .
-      dockerfile: ./backend/Dockerfile
+      dockerfile: backend/Dockerfile
     container_name: calculab_backend
-    command: python manage.py runserver 0.0.0.0:5000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/app
       - ./frontend:/app/frontend
       - ./backend/staticfiles:/app/staticfiles
+      - ./.env:/app/.env
     ports:
-      - "5000:5000"
+      - "8000:8000"
     depends_on:
       - db
     environment:
       - DJANGO_SETTINGS_MODULE=backend_calculab.settings
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
-      - SECRET_KEY=${SECRET_KEY}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
+      # - SECRET_KEY=${SECRET_KEY}
+      # - DB_HOST=${DB_HOST}
+      # - DB_PORT=${DB_PORT}
+      # - DB_NAME=${DB_NAME}
+      # - DB_USER=${DB_USER}
+      # - DB_PASSWORD=${DB_PASSWORD}
     env_file:
       - .env
 

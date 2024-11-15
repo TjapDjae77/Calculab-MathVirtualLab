@@ -11,23 +11,26 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from datetime import timedelta
-from decouple import config
+from decouple import Config, RepositoryEnv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+config = Config(RepositoryEnv(ENV_PATH))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['indonesia48.my.id']
 
 
 # Application definition
@@ -154,9 +157,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    '/app/frontend/src/css',
-    '/app/frontend/src/js',
-    '/app/frontend/media/images',
+    '../frontend/src/css',
+    '../frontend/src/js',
+    '../frontend/media/images',
 ]
 
 MEDIA_URL = '/media/'
