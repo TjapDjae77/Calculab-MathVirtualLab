@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             localStorage.removeItem('token');
 
             // Redirect ke halaman landing page
-            window.location.href = 'landing_page.html';
+            window.location.href = 'index.html';
         });
     }
 });

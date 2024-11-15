@@ -14,7 +14,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def home(request):
-    return render(request, 'landing_page.html')
+    return render(request, 'index.html')
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
