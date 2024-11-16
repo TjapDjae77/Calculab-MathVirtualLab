@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Menyalin semua file proyek ke dalam container
 COPY ./backend /app
-COPY ./.env /app/.env
 COPY frontend/ ./frontend
 COPY ./backend/staticfiles /app/staticfiles
 

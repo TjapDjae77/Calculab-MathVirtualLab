@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', function () {
     togglePassword1.addEventListener('click', function () {
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
-            toggleIcon1.src = '../../media/images/See.svg';
+            toggleIcon1.src = 'assets/images/See.svg';
             toggleIcon1.alt = 'See Password Icon';
         } else {
             passwordField.type = 'password';
-            toggleIcon1.src = '../../media/images/Hide.svg';
+            toggleIcon1.src = 'assets/images/Hide.svg';
             toggleIcon1.alt = 'Hide Password Icon';
         }
     });
@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
     togglePassword2.addEventListener('click', function () {
         if (confirmPasswordField.type === 'password') {
             confirmPasswordField.type = 'text';
-            toggleIcon2.src = '../../media/images/See.svg';
+            toggleIcon2.src = 'assets/images/See.svg';
             toggleIcon2.alt = 'See Password Icon';
         } else {
             confirmPasswordField.type = 'password';
-            toggleIcon2.src = '../../media/images/Hide.svg';
+            toggleIcon2.src = 'assets/images/Hide.svg';
             toggleIcon2.alt = 'Hide Password Icon';
         }
     });

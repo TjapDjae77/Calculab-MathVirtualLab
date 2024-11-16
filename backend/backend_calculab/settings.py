@@ -151,9 +151,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_ROOT = '/app/staticfiles'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/src/css'),
+    os.path.join(BASE_DIR, 'frontend/src'),
     os.path.join(BASE_DIR, 'frontend/src/js'),
-    os.path.join(BASE_DIR, 'frontend/media/images'),
+    os.path.join(BASE_DIR, 'frontend/src/assets/images'),
     ]
 
 MEDIA_URL = '/media/'
@@ -179,5 +179,3 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
-
-print("DATABASE_URL:", os.getenv('DATABASE_URL'))

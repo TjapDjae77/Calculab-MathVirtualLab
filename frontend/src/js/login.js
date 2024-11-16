@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
     togglePassword.addEventListener('click', function () {
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
-            toggleIcon.src = '../../media/images/See.svg';
+            toggleIcon.src = 'assets/images/See.svg';
             toggleIcon.alt = 'See Password Icon';
         } else {
             passwordField.type = 'password';
-            toggleIcon.src = '../../media/images/Hide.svg';
+            toggleIcon.src = 'assets/images/Hide.svg';
             toggleIcon.alt = 'Hide Password Icon';
         }
     });

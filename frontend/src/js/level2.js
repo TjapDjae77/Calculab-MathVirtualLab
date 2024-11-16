@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadQuestion() {
         const question = questions[currentQuestionIndex];
         functionMachine.innerHTML = question.functionQuestion;
-        outputComponent.src = `../../media/images/${question.expectedOutput}`;
+        outputComponent.src = `assets/images/${question.expectedOutput}`;
         inputFunction.value = ""; // Reset input function
         dropText.style.display = ""; // Tampilkan ulang teks drop area
         const existingImage = dropArea.querySelector("img");
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update nyawa pada UI
         if (livesRemaining >= 0) {
-            lifeIcons[livesRemaining].src = "../../media/images/Empty_Heart.svg";
+            lifeIcons[livesRemaining].src = "assets/images/Empty_Heart.svg";
         }
 
         if (livesRemaining === 0) {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset nyawa
         const lifeIcons = document.querySelectorAll('.life-icon');
         lifeIcons.forEach(icon => {
-            icon.src = '../../media/images/Full_Heart.svg';
+            icon.src = 'assets/images/Full_Heart.svg';
         });
 
         // Reset input function
