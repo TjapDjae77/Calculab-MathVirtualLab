@@ -1,3 +1,15 @@
+function checkAuthForProtectedPages() {
+    const token = localStorage.getItem('token');
+    console.log('Masuk ke profil')
+    console.log('Token found in checkAuthForProtectedPages:', token);
+    logToServer('info', `Token found in checkAuthForProtectedPages: ${token}`)
+    if (!token) {
+        console.log('No token, redirecting to login.html');
+        logToServer('info', 'Redirecting to login.html');
+        window.location.href = 'login.html';
+    }
+}
+
 checkAuthForProtectedPages();
 
 // Fungsi `refreshAccessToken` untuk mengambil token baru
