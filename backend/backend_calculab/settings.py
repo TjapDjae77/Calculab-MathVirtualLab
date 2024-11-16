@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'backend_calculab.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), engine='django.db.backends.postgresql')
 }
 
 
@@ -145,19 +145,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_ROOT = '/app/staticfiles'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/src'),
-    os.path.join(BASE_DIR, 'frontend/src/js'),
-    os.path.join(BASE_DIR, 'frontend/src/assets/images'),
-    ]
+STATICFILES_DIRS = []
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/media')
+MEDIA_URL = '/assets/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/src')
 
 
 # Default primary key field type

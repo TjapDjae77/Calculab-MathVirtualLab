@@ -7,7 +7,7 @@ WORKDIR /app
 # Menyalin semua file proyek ke dalam container
 COPY ./backend /app
 COPY frontend/ ./frontend
-COPY ./backend/staticfiles /app/staticfiles
+COPY ./backend/staticfiles /app/staticfiles/static
 
 # Menginstal dependensi
 RUN pip install --no-cache-dir -r requirements.txt
