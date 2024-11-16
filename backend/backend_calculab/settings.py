@@ -25,12 +25,12 @@ config = Config(RepositoryEnv(ENV_PATH))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='default-secret-key')
+SECRET_KEY = os.getenv("SECRET_KEY", "default_value")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['indonesia48.my.id']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -62,8 +62,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
+    "https://calculab-math-virtual-lab.vercel.app",
 ]
 
 REST_FRAMEWORK = {
@@ -109,11 +108,11 @@ WSGI_APPLICATION = 'backend_calculab.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
+        'NAME': os.getenv('DB_NAME', 'default_db_name'),
+        'USER': os.getenv('DB_USER', 'default_user'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'default_password'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
@@ -157,9 +156,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    '../frontend/src/css',
-    '../frontend/src/js',
-    '../frontend/media/images',
+    'frontend/src/css',
+    'frontend/src/js',
+    'frontend/media/images',
 ]
 
 MEDIA_URL = '/media/'

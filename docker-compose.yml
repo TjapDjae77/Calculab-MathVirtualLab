@@ -20,14 +20,14 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     container_name: calculab_backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8080
     volumes:
       - ./backend:/app
       - ./frontend:/app/frontend
       - ./backend/staticfiles:/app/staticfiles
       - ./.env:/app/.env
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
       - db
     environment:
