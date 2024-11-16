@@ -138,7 +138,7 @@ async function fetchData() {
     const token = await ensureValidAccessToken();
     if (!token) return; // Handle if token is not available
 
-    fetch('http://localhost:5000/api/accounts/profile/', {
+    fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -157,7 +157,7 @@ async function fetchData() {
 
 
 function logToServer(level, message) {
-    fetch('http://localhost:5000/api/log-frontend/', {
+    fetch('https://calculab-backend.up.railway.app/api/log-frontend/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

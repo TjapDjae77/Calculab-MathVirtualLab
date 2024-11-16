@@ -9,13 +9,14 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import dj_database_url
 import os
 from datetime import timedelta
 from decouple import Config, RepositoryEnv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 config = Config(RepositoryEnv(ENV_PATH))
@@ -28,7 +29,7 @@ config = Config(RepositoryEnv(ENV_PATH))
 SECRET_KEY = os.getenv("SECRET_KEY", "default_value")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['*']
 
@@ -72,7 +73,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1), 
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5), 
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -106,14 +107,7 @@ WSGI_APPLICATION = 'backend_calculab.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'default_db_name'),
-        'USER': os.getenv('DB_USER', 'default_user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'default_password'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 
@@ -151,15 +145,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = '/app/staticfiles'
 
 STATICFILES_DIRS = [
-    'frontend/src/css',
-    'frontend/src/js',
-    'frontend/media/images',
-]
+    os.path.join(BASE_DIR, 'frontend/src/css'),
+    os.path.join(BASE_DIR, 'frontend/src/js'),
+    os.path.join(BASE_DIR, 'frontend/media/images'),
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/media')
@@ -184,3 +179,5 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
+
+print("DATABASE_URL:", os.getenv('DATABASE_URL'))

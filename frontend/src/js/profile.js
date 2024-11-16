@@ -58,7 +58,7 @@ async function fetchProfile() {
         return;
     }
 
-    fetch('http://localhost:5000/api/accounts/profile/', {
+    fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -69,7 +69,7 @@ async function fetchProfile() {
         if (response.status === 401) {
             // Jika token ditolak, coba refresh token
             return refreshAccessToken().then(newToken => {
-                return fetch('http://localhost:5000/api/accounts/profile/', {
+                return fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${newToken}`,

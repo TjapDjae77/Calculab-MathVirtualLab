@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
-        fetch('http://localhost:5000/api/accounts/update_score/', {
+        fetch('https://calculab-backend.up.railway.app/api/accounts/update_score/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

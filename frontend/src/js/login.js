@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const username = usernameField.value;
         const password = passwordField.value;
 
-        fetch('http://localhost:5000/api/login/', {
+        fetch('https://calculab-backend.up.railway.app/api/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

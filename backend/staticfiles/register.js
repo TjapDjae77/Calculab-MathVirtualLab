@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = emailField.value;
         const password = passwordField.value;
 
-        fetch('http://localhost:5000/api/accounts/register/', {
+        fetch('https://calculab-backend.up.railway.app/api/accounts/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

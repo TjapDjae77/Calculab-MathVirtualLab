@@ -44,45 +44,6 @@ function isTokenExpiringSoon(token, bufferInSeconds = 120) {
     return expirationTime - currentTime < bufferInSeconds * 1000;
 }
 
-// Fungsi untuk melakukan refresh token
-// function refreshAccessToken() {
-//     const refreshToken = localStorage.getItem('refresh_token');
-//     if (!refreshToken) {
-//         console.error('No refresh token found');
-//         return Promise.reject('No refresh token found');
-//     }
-
-//     return fetch('http://localhost:5000/api/token/refresh/', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ refresh: refreshToken }),
-//     })
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error('Failed to refresh access token');
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
-//         if (data.access) {
-//             localStorage.setItem('token', data.access);
-//             console.log('Access token berhasil diperbarui');
-//             return data.access;
-//         } else {
-//             console.error('Gagal memperbarui access token');
-//             return Promise.reject('Gagal memperbarui access token');
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error refreshing access token:', error);
-//         // Optionally, redirect to login page if refreshing fails
-//         window.location.href = 'login.html';
-//         return Promise.reject(error);
-//     });
-// }
-
 async function refreshAccessToken() {
     const refreshToken = localStorage.getItem('refresh_token');
     console.log('Refresh token:', refreshToken);
@@ -138,7 +99,7 @@ async function fetchData() {
     const token = await ensureValidAccessToken();
     if (!token) return; // Handle if token is not available
 
-    fetch('http://localhost:5000/api/accounts/profile/', {
+    fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -157,7 +118,7 @@ async function fetchData() {
 
 
 function logToServer(level, message) {
-    fetch('http://localhost:5000/api/log-frontend/', {
+    fetch('https://calculab-backend.up.railway.app/api/log-frontend/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

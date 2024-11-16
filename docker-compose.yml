@@ -1,20 +1,5 @@
 
 services:
-  db:
-    image: postgres:latest
-    container_name: calculab_db
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_HOST: ${DB_HOST}
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    env_file:
-      - .env
-
   backend:
     build:
       context: .
@@ -28,19 +13,8 @@ services:
       - ./.env:/app/.env
     ports:
       - "8080:8080"
-    depends_on:
-      - db
     environment:
       - DJANGO_SETTINGS_MODULE=backend_calculab.settings
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
-      # - SECRET_KEY=${SECRET_KEY}
-      # - DB_HOST=${DB_HOST}
-      # - DB_PORT=${DB_PORT}
-      # - DB_NAME=${DB_NAME}
-      # - DB_USER=${DB_USER}
-      # - DB_PASSWORD=${DB_PASSWORD}
+      - DATABASE_URL=${DATABASE_URL}
     env_file:
       - .env
-
-volumes:
-  db_data:
