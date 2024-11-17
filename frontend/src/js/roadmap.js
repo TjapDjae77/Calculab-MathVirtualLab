@@ -64,6 +64,13 @@ async function getCompletedLevelsCount() {
     }
 }
 
+function scrollToLevel(levelNumber) {
+    const levelButton = document.querySelector(`button[onclick="openPopup('level${levelNumber}.html')"]`);
+    if (levelButton) {
+        levelButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
 // Fungsi untuk mengupdate tampilan level berdasarkan jumlah level yang diselesaikan
 async function updateLevelAccess() {
     const completedLevelsCount = await getCompletedLevelsCount();
@@ -99,6 +106,11 @@ async function updateLevelAccess() {
     } else {
         stage4Line.classList.replace('bg-[#DC1F84]', 'bg-gray-500');
     }
+
+    // Ngescroll ke level yang harus diselesaikan
+    if (completedLevelsCount < 3) {
+        scrollToLevel(completedLevelsCount + 1);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -109,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         return;
     }
 
-    updateLevelAccess();
+    await updateLevelAccess();
 
     const playButton = document.getElementById('playButton');
     if (playButton) {
