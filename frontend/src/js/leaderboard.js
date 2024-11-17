@@ -64,14 +64,16 @@ async function fetchLeaderboard() {
     })
     .then(response => response.json())
     .then(leaderboardData => {
+        console.log('Leaderboard data:', leaderboardData);
         if (leaderboardData) {
             const nameElements = document.querySelectorAll('.name_placeholder');
             const scoreElements = document.querySelectorAll('.score_placeholder');
 
             // Loop untuk mengisi data leaderboard, maksimal 10 elemen
             leaderboardData.slice(0, 10).forEach((player, index) => {
+                console.log('Player:', player);
                 if (nameElements[index] && scoreElements[index]) {
-                    nameElements[index].textContent = player.username || 'Anonymous';
+                    nameElements[index].textContent = player.name || 'Anonymous';
                     scoreElements[index].textContent = player.score || 0;
                 }
             });
