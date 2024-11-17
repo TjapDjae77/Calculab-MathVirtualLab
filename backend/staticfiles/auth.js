@@ -54,7 +54,7 @@ async function refreshAccessToken() {
     }
 
     try {
-        const response = await fetch('https://calculab-math-virtual-lab.vercel.app/api/token/refresh/', {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/token/refresh/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

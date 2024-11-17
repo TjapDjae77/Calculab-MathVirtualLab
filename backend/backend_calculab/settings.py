@@ -69,7 +69,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ALLOWED_ORIGINS = [
     "https://calculab-math-virtual-lab.vercel.app",
-    "https://calculab-backend.up.railway.app"
+    "https://calculab-backend.up.railway.app",
 ]
 
 REST_FRAMEWORK = {

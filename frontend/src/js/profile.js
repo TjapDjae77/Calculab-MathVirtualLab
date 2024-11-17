@@ -11,35 +11,6 @@ function checkAuthForProtectedPages() {
 }
 
 checkAuthForProtectedPages();
-
-// Fungsi `refreshAccessToken` untuk mengambil token baru
-// async function refreshAccessToken() {
-//     const refreshToken = localStorage.getItem('refresh_token');
-//     if (!refreshToken) {
-//         console.error('No refresh token found');
-//         window.location.href = 'login.html';
-//         return null;
-//     }
-
-//     try {
-//         const response = await fetch('http://localhost:5000/api/token/refresh/', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ refresh: refreshToken })
-//         });
-//         if (!response.ok) {
-//             throw new Error('Failed to refresh token');
-//         }
-//         const data = await response.json();
-//         localStorage.setItem('token', data.access);
-//         return data.access;
-//     } catch (error) {
-//         console.error('Error refreshing access token:', error);
-//         window.location.href = 'login.html';
-//     }
-// }
 refreshAccessToken();
 
 // Memastikan token access masih valid

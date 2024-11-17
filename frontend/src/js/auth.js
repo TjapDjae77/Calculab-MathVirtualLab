@@ -93,7 +93,7 @@ async function refreshAccessToken() {
     }
 
     try {
-        const response = await fetch('https://calculab-math-virtual-lab.vercel.app/api/token/refresh/', {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/token/refresh/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,6 +101,8 @@ async function refreshAccessToken() {
             body: JSON.stringify({ refresh: refreshToken }),
         });
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Failed to refresh token. Status:', response.status, 'Response:', errorText);
             throw new Error('Failed to refresh token');
         }
         const data = await response.json();
