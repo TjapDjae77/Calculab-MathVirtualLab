@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type === "success") {
             popupModal.querySelector("div").classList.add("bg-green-200");
         } else if (type === "error") {
-            console.log("BACKGROUND MERAH");
             popupModal.querySelector("div").classList.add("bg-red-200");
         }
 
@@ -137,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, "success");
             } else {
                 const score = 100 * livesRemaining;
-                updateProgressOnServer(score);
+                updateProgressOnServer(1, score);
                 showScorePopup(score);
             }
         } else {
@@ -191,14 +190,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dropText) dropText.style.display = 'block';
     }
 
-    function updateProgressOnServer(score) {
+    function updateProgressOnServer(levelNumber, score) {
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No access token found');
             return;
         }
     
-        fetch('https://calculab-backend.up.railway.app/api/accounts/update_score/', {
+        fetch(`https://calculab-backend.up.railway.app/api/levels/complete/${levelNumber}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -208,15 +207,15 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to update score');
+                throw new Error('Failed to update progress');
             }
             return response.json();
         })
         .then(data => {
-            console.log('Score updated successfully:', data);
+            console.log('Progress updated successfully:', data);
         })
         .catch(error => {
-            console.error('Error updating score:', error);
+            console.error('Error updating progress:', error);
         });
     }
     
@@ -258,12 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // // Mencegah item di-drag ulang jika sudah di-drop
-    // item.addEventListener('dragend', () => {
-    //     item.classList.add('dragged');
-    //     item.style.pointerEvents = 'none'; // Mencegah drag ulang
-    // });
-
     // Menambahkan event listener untuk area drop
     dropArea.addEventListener('dragover', (e) => {
         e.preventDefault(); // Mengizinkan drop
@@ -272,20 +265,17 @@ document.addEventListener('DOMContentLoaded', () => {
     dropArea.addEventListener('drop', (e) => {
         e.preventDefault();
         const imgSrc = e.dataTransfer.getData('text'); // Ambil `src` gambar dari event `dragstart`
-        console.log('Gambar berhasil di-drop:', imgSrc);
     
         if (imgSrc) {
             // Sembunyikan teks "Drop the material here"
             if (dropText) {
                 dropText.style.display = 'none';
-                console.log('Teks di-dropArea disembunyikan');
             }
     
             // Periksa jika ada gambar sebelumnya dan ganti dengan yang baru
             let existingImage = dropArea.querySelector('img');
             if (existingImage) {
                 existingImage.remove();
-                console.log('Gambar sebelumnya dihapus');
             }
     
             // Tambahkan elemen gambar baru ke drop area
