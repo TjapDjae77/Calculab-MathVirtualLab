@@ -13,16 +13,6 @@ function checkAuthForProtectedPages() {
 checkAuthForProtectedPages();
 refreshAccessToken();
 
-// Memastikan token access masih valid
-// async function ensureValidAccessToken() {
-//     let token = localStorage.getItem('token');
-//     if (token && isTokenExpiringSoon(token)) {
-//         console.log('Access token is expiring soon, refreshing...');
-//         token = await refreshAccessToken();
-//     }
-//     return token;
-// }
-
 // Fungsi untuk mengecek masa aktif token
 function isTokenExpiringSoon(token) {
     const payload = JSON.parse(atob(token.split('.')[1]));
