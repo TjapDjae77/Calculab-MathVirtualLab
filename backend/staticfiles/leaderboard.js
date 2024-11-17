@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             throw new Error('Failed to fetch leaderboard data');
         }
 
-        console.log("Berhasil ditemukan leaderboard")
         const leaderboardData = await response.json();
         
         const nameElements = document.querySelectorAll('.name_placeholder');

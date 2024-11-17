@@ -30,7 +30,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/log-frontend/', log_frontend, name='log_frontend'),
     path('api/levels/', include('levels.urls')),
-    path('leaderboard/', leaderboard, name='leaderboard'),
+    path('api/leaderboard/', leaderboard, name='leaderboard'),
 ]
 
 if settings.DEBUG:
