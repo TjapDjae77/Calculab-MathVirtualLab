@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/log-frontend/', log_frontend, name='log_frontend'),
+    path('api/levels/', include('levels.urls')),
 ]
 
 if settings.DEBUG:

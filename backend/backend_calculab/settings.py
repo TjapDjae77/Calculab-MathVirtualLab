@@ -10,17 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import dj_database_url
+import environ
 import os
 from datetime import timedelta
-from decouple import Config, RepositoryEnv
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ENV_PATH = os.path.join(BASE_DIR, ".env")
-config = Config(RepositoryEnv(ENV_PATH))
-
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'accounts'
+    'accounts',
+    'levels',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +114,8 @@ WSGI_APPLICATION = 'backend_calculab.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), engine='django.db.backends.postgresql')
+    # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), engine='django.db.backends.postgresql')
+    'default': env.db('DATABASE_URL')
 }
 
 

@@ -17,7 +17,7 @@ const questions = [
         id: 3,
         functionQuestion: "f(g(x)) = 2x - 4<br><br>f(x) = x + 3",
         expectedMaterial: "fiberglass.png",
-        expectedFunction: "2x - 10",
+        expectedFunction: "2x - 7",
         expectedOutput: "Conehead.svg",
     },
 ];
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, "success");
             } else {
                 const score = 100 * livesRemaining;
-                updateScoreOnServer(score);
+                updateProgressOnServer(score);
                 showScorePopup(score);
             }
         } else {
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dropText) dropText.style.display = 'block';
     }
 
-    function updateScoreOnServer(score) {
+    function updateProgressOnServer(score) {
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No access token found');

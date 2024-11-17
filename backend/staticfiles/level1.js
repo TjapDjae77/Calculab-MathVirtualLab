@@ -17,7 +17,7 @@ const questions = [
         id: 3,
         functionQuestion: "f(g(x)) = 2x - 4<br><br>f(x) = x + 3",
         expectedMaterial: "fiberglass.png",
-        expectedFunction: "2x - 10",
+        expectedFunction: "2x - 7",
         expectedOutput: "Conehead.svg",
     },
 ];
