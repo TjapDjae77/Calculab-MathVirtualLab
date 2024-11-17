@@ -190,14 +190,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dropText) dropText.style.display = 'block';
     }
 
-    function updateProgressOnServer(levelNumber, score) {
+    function updateProgressOnServer(level_number, score) {
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No access token found');
             return;
         }
     
-        fetch(`https://calculab-backend.up.railway.app/api/levels/complete/${levelNumber}/`, {
+        fetch(`https://calculab-backend.up.railway.app/api/levels/complete/${level_number}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
