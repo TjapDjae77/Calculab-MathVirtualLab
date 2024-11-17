@@ -87,7 +87,9 @@ async function fetchProfile() {
             document.getElementById('username').textContent = data.username;
             document.getElementById('email').textContent = data.email;
             document.getElementById('score').textContent = data.score;
-            document.getElementById('level-completed').textContent = data.level_completed;
+            
+            const completedLevelsCount = data.level_completed ? data.level_completed.length : 0;
+            document.getElementById('level-completed').textContent = completedLevelsCount;
         }
     })
     .catch(error => {
