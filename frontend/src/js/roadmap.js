@@ -57,7 +57,7 @@ async function getCompletedLevelsCount() {
         }
 
         const data = await response.json();
-        return data.level_completed ? data.level_completed.length : 0;
+        return data.completed_levels ? data.completed_levels.length : 0;
     } catch (error) {
         console.error('Error fetching profile:', error);
         return 0;

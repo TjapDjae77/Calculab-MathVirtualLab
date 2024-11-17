@@ -71,7 +71,7 @@ async function fetchProfile() {
             document.getElementById('email').textContent = data.email;
             document.getElementById('score').textContent = data.score;
             
-            const completedLevelsCount = data.level_completed ? data.level_completed.length : 0;
+            const completedLevelsCount = data.completed_levels ? data.completed_levels.length : 0;
             document.getElementById('level-completed').textContent = completedLevelsCount;
         }
     })
