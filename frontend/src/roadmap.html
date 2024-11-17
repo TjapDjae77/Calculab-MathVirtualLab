@@ -73,31 +73,31 @@
             <div class="text-center text-gray-600 text-3xl md:text-5xl my-10">Coming soon. Stay tuned!</div>
             
             <!-- Connecting Line -->
-            <div class="w-1 h-48 bg-[#DC1F84]"></div>
+            <div id="stage4-line" class="w-1 h-48 bg-gray-500"></div>
     
             <!-- Stage 3 -->
-            <button onclick="openPopup('level3.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+            <button disabled onclick="openPopup('level3.html')" class="w-16 h-16 md:w-24 md:h-24 bg-gray-500 text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-not-allowed opacity-70">
                 3
             </button>
     
             <!-- Connecting Line -->
-            <div class="w-1 h-96 bg-[#DC1F84]"></div>
+            <div id="stage3-line" class="w-1 h-96 bg-gray-500"></div>
     
              <!-- Stage 2 -->
-             <button onclick="openPopup('level2.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+             <button disabled onclick="openPopup('level2.html')" class="w-16 h-16 md:w-24 md:h-24 bg-gray-500 text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-not-allowed opacity-70">
                 2
             </button>
     
             <!-- Connecting Line -->
-            <div class="w-1 h-96 bg-[#DC1F84]"></div>
+            <div id="stage2-line" class="w-1 h-96 bg-gray-500"></div>
     
             <!-- Stage 1 -->
-            <button onclick="openPopup('level1.html')" class="w-16 h-16 md:w-24 md:h-24 bg-[#DC1F84] text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-pointer hover:bg-[#a3125b] active:bg-[#831048]">
+            <button disabled onclick="openPopup('level1.html')" class="w-16 h-16 md:w-24 md:h-24 bg-gray-500 text-white rounded-full flex items-center justify-center text-2xl md:text-4xl font-semibold cursor-not-allowed opacity-70">
                 1
             </button>
     
             <!-- Connecting Line -->
-            <div class="w-1 h-[600px] bg-[#DC1F84]"></div>
+            <div id="stage1-line" class="w-1 h-[600px] bg-gray-500"></div>
         </div>
     
         <!-- Background Factory -->
@@ -109,7 +109,7 @@
     
 
     <!-- Popup Modal -->
-    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center hidden z-50">
         <div class="bg-white w-80 md:w-96 p-6 rounded-lg relative">
             <h2 class="text-2xl font-semibold mb-4">Start Level</h2>
             <p class="mb-6">Do you want to play this level?</p>

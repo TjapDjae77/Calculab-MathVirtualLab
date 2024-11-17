@@ -17,11 +17,14 @@ let selectedLevelUrl = '';
 function openPopup(levelUrl) {
     selectedLevelUrl = levelUrl;
     document.getElementById('popupModal').classList.remove('hidden');
+    document.getElementById('popupModal').classList.add('flex');
 }
 
 // Function to close the popup
 function closePopup() {
+    selectedLevelUrl = '';
     document.getElementById('popupModal').classList.add('hidden');
+    document.getElementById('popupModal').classList.remove('flex');
 }
 
 // Close popup if clicking outside of it
@@ -32,6 +35,72 @@ window.addEventListener('click', function (event) {
     }
 });
 
+
+async function getCompletedLevelsCount() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.error('No access token found');
+        return 0;
+    }
+
+    try {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch profile data');
+        }
+
+        const data = await response.json();
+        return data.level_completed ? data.level_completed.length : 0;
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+        return 0;
+    }
+}
+
+// Fungsi untuk mengupdate tampilan level berdasarkan jumlah level yang diselesaikan
+async function updateLevelAccess() {
+    const completedLevelsCount = await getCompletedLevelsCount();
+
+    // Daftar elemen tombol level dan garis penghubungnya
+    const stages = [
+        { button: document.querySelector('button[onclick="openPopup(\'level1.html\')"]'), line: document.getElementById('stage1-line') },
+        { button: document.querySelector('button[onclick="openPopup(\'level2.html\')"]'), line: document.getElementById('stage2-line') },
+        { button: document.querySelector('button[onclick="openPopup(\'level3.html\')"]'), line: document.getElementById('stage3-line') }
+    ];
+
+    // Perulangan untuk mengubah properti tombol dan garis penghubung
+    stages.forEach((stage, index) => {
+        if (index <= completedLevelsCount) {
+            // Level sudah diselesaikan atau dapat diakses
+            stage.button.disabled = false;
+            stage.button.classList.remove('bg-gray-500', 'cursor-not-allowed', 'opacity-70');
+            stage.button.classList.add('bg-[#DC1F84]', 'cursor-pointer', 'hover:bg-[#a3125b]', 'active:bg-[#831048]');
+            stage.line.classList.replace('bg-gray-500', 'bg-[#DC1F84]');
+        } else {
+            // Level belum bisa diakses
+            stage.button.disabled = true;
+            stage.button.classList.add('bg-gray-500', 'cursor-not-allowed', 'opacity-70');
+            stage.button.classList.remove('bg-[#DC1F84]', 'cursor-pointer', 'hover:bg-[#a3125b]', 'active:bg-[#831048]');
+            stage.line.classList.replace('bg-[#DC1F84]', 'bg-gray-500');
+        }
+    });
+
+    // Khusus untuk line level 4
+    const stage4Line = document.getElementById('stage4-line');
+    if (completedLevelsCount >= 3) {
+        stage4Line.classList.replace('bg-gray-500', 'bg-[#DC1F84]');
+    } else {
+        stage4Line.classList.replace('bg-[#DC1F84]', 'bg-gray-500');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async function () {
     const token = await ensureValidAccessToken();
 
@@ -39,6 +108,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = 'login.html'; // Redirect jika tidak ada token
         return;
     }
+
+    updateLevelAccess();
 
     const playButton = document.getElementById('playButton');
     if (playButton) {
