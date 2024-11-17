@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     errorMessageContainer.classList.add('text-red-500', 'text-sm', 'mt-2');
     passwordField.parentNode.insertBefore(errorMessageContainer, passwordField.nextSibling);
 
+    // Kalo lagi input username email di-klik enter otomatis menuju ke password
+    document.getElementById('username_email').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Mencegah form submit
+            document.getElementById('password').focus(); // Memindahkan fokus ke input password
+        }
+    });
+
     // Buat nge-toggle visibility-nya password
     togglePassword.addEventListener('click', function () {
         if (passwordField.type === 'password') {
