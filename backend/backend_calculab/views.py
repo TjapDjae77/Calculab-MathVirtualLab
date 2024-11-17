@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status, serializers
+from accounts.models import Profile
 import json
 import logging
 
@@ -86,3 +87,12 @@ def log_frontend(request):
             logger.error(f"Failed to log frontend message: {e}")
             return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+
+@api_view(['GET'])
+def leaderboard(request):
+    profiles = Profile.objects.all().order_by('-score')[:10]  # Ambil 10 teratas berdasarkan skor
+    leaderboard_data = [
+        {'name': profile.user.username, 'score': profile.score}
+        for profile in profiles
+    ]
+    return Response(leaderboard_data)

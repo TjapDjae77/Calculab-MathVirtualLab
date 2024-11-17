@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import CustomTokenObtainPairView, log_frontend
+from .views import CustomTokenObtainPairView, log_frontend, leaderboard
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/log-frontend/', log_frontend, name='log_frontend'),
     path('api/levels/', include('levels.urls')),
+    path('leaderboard/', leaderboard, name='leaderboard'),
 ]
 
 if settings.DEBUG:

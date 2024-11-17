@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gradient-to-b from-blue-400 via-indigo-100 to-purple-200 flex">
-    <!-- Sidebar -->
     <aside class="w-1/5 md:w-1/3 bg-[#6D2476] text-white h-screen sticky top-0 flex flex-col p-6 md:px-10 items-center lg:items-center">
         <a href="roadmap.html" class="mb-20 md:mb-32 items-start">
             <img src="assets/images/Logo_Calculab.svg" alt="Logo Calculab" class="w-14 md:block lg:hidden">
@@ -15,7 +14,7 @@
         </a>
         <nav class="flex flex-col space-y-8 gap-12">
             <div class="relative group">
-                <a href="roadmap.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-2 lg:p-4 transition-colors duration-300">
+                <a href="roadmap.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-2 lg:p-4 transition-colors duration-300">
                     <img src="assets/images/bookmark.svg" alt="Learn Icon" class="w-5 md:w-14">
                     <span class="hidden lg:block">Learn</span>
                 </a>
@@ -24,7 +23,7 @@
                 </div>
             </div>
             <div class="relative group">
-                <a href="leaderboard.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-2xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-4 transition-colors duration-300">
+                <a href="leaderboard.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-2xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-4 transition-colors duration-300">
                     <img src="assets/images/medal.svg" alt="Leaderboard Icon" class="w-8 md:w-14">
                     <span class="hidden lg:block">Leaderboard</span>
                 </a>
@@ -56,11 +55,119 @@
     </aside>
 
     <!-- Main Content for Profile -->
-    <main class="w-4/5 md:w-4/5 flex flex-col items-center justify-center h-screen pt-10 pb-20 relative">
-        <section class="w-full max-w-4xl bg-white rounded-lg shadow-md p-8 md:p-12 justify-center flex items-center">
-            <h2 class="text-4xl font-bold text-[#6D2476] mb-8">Leaderboards are currently unavailable</h2>
+    <main class="w-4/5 md:w-2/3 flex flex-col items-center h-screen pt-10 pb-20 relative">
+        <section class="w-full max-w-4xl flex-col bg-white rounded-lg shadow-md p-8 md:p-12 justify-center flex items-center">
+            <h2 class="text-4xl font-bold text-[#6D2476] mb-8 text-center">Leaderboard</h2>
+            <div class="flex justify-between items-center">
+                <!-- Top 3 Players -->
+                <div class="flex justify-around w-full">
+                    <div class="text-center order-2">
+                        <div class="w-32 h-32 bg-white border-4 border-[#E7C464] rounded-full mx-auto flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="1st place" class="w-24 h-24">
+                        </div>
+                        <p class="mt-2 text-lg font-semibold name_placeholder">-</p>
+                        <p class="text-2xl font-bold score_placeholder">Score</p>
+                    </div>
+                    <div class="text-center mr-12 mt-16 order-1">
+                        <div class="w-24 h-24 bg-white border-4 border-[#C5C5C5] rounded-full mx-auto flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="2nd place" class="w-16 h-16">
+                        </div>
+                        <p class="mt-2 text-lg font-semibold name_placeholder">-</p>
+                        <p class="text-xl font-bold score_placeholder">Score</p>
+                    </div>
+                    <div class="text-center ml-12 mt-16 order-3">
+                        <div class="w-24 h-24 bg-white border-4 border-[#EACAAC] rounded-full mx-auto flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="3rd place" class="w-16 h-16">
+                        </div>
+                        <p class="mt-2 text-lg font-semibold name_placeholder">-</p>
+                        <p class="text-xl font-bold score_placeholder">Score</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Other Players -->
+        </section>
+        <section class="w-full max-w-4xl flex-col bg-white rounded-lg shadow-md p-8 md:p-12">
+            <div class="space-y-4 flex flex-col justify-start">
+                <!-- 4th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">4</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 5th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">5</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 6th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">6</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 7th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">7</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 8th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">8</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 9th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-4">9</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+                <!-- 10th place -->
+                <div class="flex items-center justify-between p-4 border-b-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl font-bold mr-1">10</div>
+                        <div class="w-12 h-12 bg-white border-4 border-[#00D95F] rounded-full flex items-center justify-center">
+                            <img src="assets/images/User_Icon.png" alt="User" class="w-10 h-10">
+                        </div>
+                        <p class="text-lg font-medium name_placeholder">-</p>
+                    </div>
+                    <p class="text-xl font-bold score_placeholder">Score</p>
+                </div>
+            </div>
         </section>
     </main>
-    <script src="js/profile.js"></script>
+    <script src="js/leaderboard.js"></script>
 </body>
 </html>
