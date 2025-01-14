@@ -14,7 +14,11 @@ import environ
 import os
 from datetime import timedelta
 from decouple import config
+from dotenv import load_dotenv
+from urllib.parse import urlparse
 from pathlib import Path
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,9 +35,9 @@ SECRET_KEY = os.getenv("SECRET_KEY", "default_value")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['calculab-backend.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['calculab-backend.up.railway.app', 'localhost', '127.0.0.1', '103.82.93.43']
 
-CSRF_TRUSTED_ORIGINS = ['https://calculab-backend.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://calculab-backend.up.railway.app', 'https://103.82.93.43']
 
 
 # Application definition
@@ -113,9 +117,18 @@ WSGI_APPLICATION = 'backend_calculab.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+
 DATABASES = {
     # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), engine='django.db.backends.postgresql')
-    'default': env.db('DATABASE_URL')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
+    }
 }
 
 
