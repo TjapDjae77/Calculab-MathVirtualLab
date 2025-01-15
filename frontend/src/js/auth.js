@@ -93,7 +93,7 @@ async function refreshAccessToken() {
     }
 
     try {
-        const response = await fetch('https://103.82.93.43/api/token/refresh/', {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/token/refresh/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ async function fetchData() {
     const token = await ensureValidAccessToken();
     if (!token) return; // Handle if token is not available
 
-    fetch('https://103.82.93.43/api/accounts/profile/', {
+    fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -159,7 +159,7 @@ async function fetchData() {
 
 
 function logToServer(level, message) {
-    fetch('https://103.82.93.43/api/log-frontend/', {
+    fetch('https://calculab-backend.up.railway.app/api/log-frontend/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

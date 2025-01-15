@@ -40,7 +40,7 @@ async function fetchLeaderboard() {
         return;
     }
 
-    fetch('https://103.82.93.43/api/leaderboard/', {
+    fetch('https://calculab-backend.up.railway.app/api/leaderboard/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -51,7 +51,7 @@ async function fetchLeaderboard() {
         if (response.status === 401) {
             // Jika token ditolak, coba refresh token
             return refreshAccessToken().then(newToken => {
-                return fetch('https://103.82.93.43/api/leaderboard/', {
+                return fetch('https://calculab-backend.up.railway.app/api/leaderboard/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${newToken}`,

@@ -44,7 +44,7 @@ async function getCompletedLevelsCount() {
     }
 
     try {
-        const response = await fetch('https://103.82.93.43/api/accounts/profile/', {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/accounts/profile/', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

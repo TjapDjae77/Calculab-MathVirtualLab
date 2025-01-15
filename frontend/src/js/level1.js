@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
-        fetch(`https://103.82.93.43/api/levels/complete/${level_number}/`, {
+        fetch(`https://calculab-backend.up.railway.app/api/levels/complete/${level_number}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
