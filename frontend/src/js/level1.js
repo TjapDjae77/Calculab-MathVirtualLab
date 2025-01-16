@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isGameOver = false;
     let expectedFunction = [];
     let expectedMaterial = "";
+    let question = "";
 
     // Fetch questions from the API
     async function fetchQuestions() {
@@ -67,11 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Shuffle and select 3 questions
         questions = fisherYatesShuffle(level1Questions).slice(0, 3);
+        console.log('Questions');
+        console.log(questions);
     }
+    
+    fetchQuestions();
 
     function loadQuestion() {
-        const question = questions[currentQuestionIndex];
+        question = questions[currentQuestionIndex];
         if (!question) return;
+        console.log('Question Premise 1:', question.premise1);
+        console.log('Question Premise 2:', question.premise2);
         functionMachine.innerHTML = `${question.premise1}<br><br>${question.premise2}`;
         outputComponent.src = `assets/images/${question.output_material}.svg`;
         expectedFunction = question.input_function_checker;
