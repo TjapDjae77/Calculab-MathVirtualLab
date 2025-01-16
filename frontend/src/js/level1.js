@@ -71,11 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Questions');
         console.log(questions);
     }
-    
+
     fetchQuestions();
 
+    // Muat soal pertama kali
+    loadQuestion();
+
     function loadQuestion() {
+        console.log('Menjalankan loadQuestion');
         question = questions[currentQuestionIndex];
+        console.log('Question:', question);
         if (!question) return;
         console.log('Question Premise 1:', question.premise1);
         console.log('Question Premise 2:', question.premise2);
@@ -179,9 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton.addEventListener("click", () => {
         validateAnswer();
     });
-
-    // Muat soal pertama kali
-    loadQuestion();
 
     goBackButton.addEventListener('click', () => {
         goBackPopup.classList.remove('hidden');
