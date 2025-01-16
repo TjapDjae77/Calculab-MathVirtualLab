@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'levels',
+    'questions',
 ]
 
 MIDDLEWARE = [

@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/log-frontend/', log_frontend, name='log_frontend'),
     path('api/levels/', include('levels.urls')),
     path('api/leaderboard/', leaderboard, name='leaderboard'),
+    path('api/questions/', include('questions.urls')),
 ]
 
 if settings.DEBUG:
