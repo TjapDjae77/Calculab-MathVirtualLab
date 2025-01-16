@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isFunctionCorrect = expectedFunction.includes(inputFunctionValue);
         console.log('isFunctionCorrect:', isFunctionCorrect);
         console.log('materialSrc:', materialSrc);
+        console.log('expectedMaterial:', expectedMaterial)
 
         if (materialSrc === expectedMaterial && isFunctionCorrect) {
             currentQuestionIndex++;
