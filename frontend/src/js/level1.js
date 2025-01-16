@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropArea = document.querySelector('.drop-area');
     const dropText = dropArea.querySelector('.drop-text');
     const playButton = document.getElementById('playButton');
+    const baseFunction = document.getElementById("base-function");
     const inputFunction = document.getElementById('input_function');
     const functionMachine = document.querySelector(".function-question");
     const outputComponent = document.querySelector(".output-image");
@@ -42,15 +43,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupMessage = document.getElementById("popupMessage");
     const popupButton = document.getElementById("popupButton");
     
-
+    let questions = [];
     let currentQuestionIndex = 0;
     let livesRemaining = 3;
     let isGameOver = false;
+    let expectedFunction = [];
+    let expectedMaterial = "";
+
+    // Fetch questions from the API
+    async function fetchQuestions() {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/questions/');
+        const data = await response.json();
+        const level1Questions = data.filter(question => question.level === 1);
+
+        // Fisher-Yates Shuffle to randomize the questions
+        function fisherYatesShuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1)); // Pilih indeks acak
+                [array[i], array[j]] = [array[j], array[i]];   // Tukar elemen
+            }
+            return array;
+        }
+
+        // Shuffle and select 3 questions
+        questions = fisherYatesShuffle(level1Questions).slice(0, 3);
+    }
 
     function loadQuestion() {
         const question = questions[currentQuestionIndex];
-        functionMachine.innerHTML = question.functionQuestion;
-        outputComponent.src = `assets/images/${question.expectedOutput}`;
+        if (!question) return;
+        functionMachine.innerHTML = `${question.premise1}<br><br>${question.premise2}`;
+        outputComponent.src = `assets/images/${question.output_material}.svg`;
+        expectedFunction = question.input_function_checker;
+        baseFunction.innerHTML = `${question.base_function} =`;
+        expectedMaterial = `${question.material_input_checker}.png`;
         inputFunction.value = ""; // Reset input function
         dropText.style.display = ""; // Tampilkan ulang teks drop area
         const existingImage = dropArea.querySelector("img");
@@ -114,23 +140,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateAnswer() {
         if (isGameOver) return;
 
-        const question = questions[currentQuestionIndex];
         const materialImage = dropArea.querySelector("img");
         const materialSrc = materialImage ? materialImage.src.split("/").pop() : null;
         const inputFunctionValue = inputFunction.value.trim();
 
-        if (
-            materialSrc === question.expectedMaterial &&
-            inputFunctionValue === question.expectedFunction
-        ) {
+        const isFunctionCorrect = expectedFunction.includes(inputFunctionValue);
+
+        if (materialSrc === expectedMaterial && isFunctionCorrect) {
             currentQuestionIndex++;
 
             // Perbarui progress bar
             const progressPercentage =
-                ((currentQuestionIndex / questions.length) * 100).toFixed(2);
+                ((currentQuestionIndex / 3) * 100).toFixed(2);
             progressBar.style.width = `${progressPercentage}%`;
 
-            if (currentQuestionIndex < questions.length) {
+            if (currentQuestionIndex < 3) {
                 showPopup("Correct!", "Great job! On to the next question.", () => {
                     loadQuestion();
                 }, "success");
