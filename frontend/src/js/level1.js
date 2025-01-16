@@ -70,12 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
         questions = fisherYatesShuffle(level1Questions).slice(0, 3);
         console.log('Questions');
         console.log(questions);
+
+        // Muat soal pertama kali
+        loadQuestion();
     }
 
     fetchQuestions();
-
-    // Muat soal pertama kali
-    loadQuestion();
 
     function loadQuestion() {
         console.log('Menjalankan loadQuestion');
