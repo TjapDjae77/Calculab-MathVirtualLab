@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupMessage = document.getElementById("popupMessage");
     const popupButton = document.getElementById("popupButton");
     
-
+    let questions = [];
     let currentQuestionIndex = 0;
     let livesRemaining = 3;
     let isGameOver = false;
