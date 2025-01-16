@@ -1,28 +1,3 @@
-const questions = [
-    {
-        id: 1,
-        functionQuestion: "f(g(x)) = 5x - 2<br><br>f(x) = x + 4",
-        expectedMaterial: "aluminium.png",
-        expectedFunction: "5x - 6",
-        expectedOutput: "Feet_Rocket.svg",
-    },
-    {
-        id: 2,
-        functionQuestion: "f(g(x)) = 3x + 1<br><br>f(x) = x - 2",
-        expectedMaterial: "glass.png",
-        expectedFunction: "3x + 3",
-        expectedOutput: "Mirror.svg",
-    },
-    {
-        id: 3,
-        functionQuestion: "f(g(x)) = 2x - 4<br><br>f(x) = x + 3",
-        expectedMaterial: "fiberglass.png",
-        expectedFunction: "2x - 7",
-        expectedOutput: "Conehead.svg",
-    },
-];
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const goBackButton = document.querySelector('img[alt="Back Button"]');
     const goBackPopup = document.getElementById('goBackPopup');
@@ -78,12 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchQuestions();
 
     function loadQuestion() {
-        console.log('Menjalankan loadQuestion');
         question = questions[currentQuestionIndex];
-        console.log('Question:', question);
         if (!question) return;
-        console.log('Question Premise 1:', question.premise1);
-        console.log('Question Premise 2:', question.premise2);
         functionMachine.innerHTML = `${question.premise1}<br><br>${question.premise2}`;
         outputComponent.src = `assets/images/${question.output_material}.svg`;
         expectedFunction = question.input_function_checker;

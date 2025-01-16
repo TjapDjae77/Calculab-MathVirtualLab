@@ -1,28 +1,3 @@
-const questions = [
-    {
-        id: 1,
-        functionQuestion: "f(g(x)) = sin(2x)<br><br>f(x) = sin(x)",
-        expectedMaterial: "fiberglass.png",
-        expectedFunction: "2x",
-        expectedOutput: "Conehead.svg",
-    },
-    {
-        id: 2,
-        functionQuestion: "f(g(x)) = sin(3x) + cos(3x)<br><br>f(x) = 3x",
-        expectedMaterial: "aluminium.png",
-        expectedFunction: "sin(x) + cos(x)",
-        expectedOutput: "Feet_Rocket.svg",
-    },
-    {
-        id: 3,
-        functionQuestion: "f(g(x)) = sin(x) + cos(x)<br><br>f(x) = x^2 + 1",
-        expectedMaterial: "glass.png",
-        expectedFunction: "x + 2",
-        expectedOutput: "Mirror.svg",
-    },
-];
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const goBackButton = document.querySelector('img[alt="Back Button"]');
     const goBackPopup = document.getElementById('goBackPopup');
@@ -32,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropArea = document.querySelector('.drop-area');
     const dropText = dropArea.querySelector('.drop-text');
     const playButton = document.getElementById('playButton');
+    const baseFunction = document.getElementById("base-function");
     const inputFunction = document.getElementById('input_function');
     const functionMachine = document.querySelector(".function-question");
     const outputComponent = document.querySelector(".output-image");
@@ -46,11 +22,44 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let livesRemaining = 3;
     let isGameOver = false;
+    let expectedFunction = [];
+    let expectedMaterial = "";
+    let question = "";
+
+    // Fetch questions from the API
+    async function fetchQuestions() {
+        const response = await fetch('https://calculab-backend.up.railway.app/api/questions/');
+        const data = await response.json();
+        const level3Questions = data.filter(question => question.level === 3);
+
+        // Fisher-Yates Shuffle to randomize the questions
+        function fisherYatesShuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1)); // Pilih indeks acak
+                [array[i], array[j]] = [array[j], array[i]];   // Tukar elemen
+            }
+            return array;
+        }
+
+        // Shuffle and select 3 questions
+        questions = fisherYatesShuffle(level3Questions).slice(0, 3);
+        console.log('Questions');
+        console.log(questions);
+
+        // Muat soal pertama kali
+        loadQuestion();
+    }
+
+    fetchQuestions();
 
     function loadQuestion() {
-        const question = questions[currentQuestionIndex];
-        functionMachine.innerHTML = question.functionQuestion;
-        outputComponent.src = `assets/images/${question.expectedOutput}`;
+        question = questions[currentQuestionIndex];
+        if (!question) return;
+        functionMachine.innerHTML = `${question.premise1}<br><br>${question.premise2}`;
+        outputComponent.src = `assets/images/${question.output_material}.svg`;
+        expectedFunction = question.input_function_checker;
+        baseFunction.innerHTML = `${question.base_function} =`;
+        expectedMaterial = `${question.material_input_checker}.png`;
         inputFunction.value = ""; // Reset input function
         dropText.style.display = ""; // Tampilkan ulang teks drop area
         const existingImage = dropArea.querySelector("img");
@@ -119,18 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const materialSrc = materialImage ? materialImage.src.split("/").pop() : null;
         const inputFunctionValue = inputFunction.value.trim();
 
-        if (
-            materialSrc === question.expectedMaterial &&
-            inputFunctionValue === question.expectedFunction
-        ) {
+        const isFunctionCorrect = expectedFunction.includes(inputFunctionValue);
+
+        if (materialSrc === expectedMaterial && isFunctionCorrect) {
             currentQuestionIndex++;
 
             // Perbarui progress bar
             const progressPercentage =
-                ((currentQuestionIndex / questions.length) * 100).toFixed(2);
+                ((currentQuestionIndex / 3) * 100).toFixed(2);
             progressBar.style.width = `${progressPercentage}%`;
 
-            if (currentQuestionIndex < questions.length) {
+            if (currentQuestionIndex < 3) {
                 showPopup("Correct!", "Great job! On to the next question.", () => {
                     loadQuestion();
                 }, "success");
