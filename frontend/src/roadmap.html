@@ -10,7 +10,7 @@
 </head>
 <body class="min-h-[240vh] bg-gradient-to-b from-blue-400 via-indigo-100 to-purple-200 flex">
     <!-- Sidebar -->
-    <aside class="w-1/5 md:w-1/3 bg-[#6D2476] text-white h-screen sticky top-0 flex flex-col p-6 md:px-10 items-center lg:items-center">
+    <aside class="w-1/5 md:w-1/3 bg-[#6D2476] text-white h-screen sticky top-0 hidden md:flex flex-col p-6 md:px-10 items-center lg:items-center">
         <a href="roadmap.html" class="mb-20 md:mb-32 items-start">
             <img src="assets/images/Logo_Calculab.svg" alt="Logo Calculab" class="w-14 md:block lg:hidden">
             <h1 class="hidden lg:block text-4xl font-bold">Calculab</h1>
@@ -58,7 +58,7 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="w-4/5 md:w-4/5 flex flex-col items-center pt-10 pb-20 relative overflow-hidden">
+    <main class="w-screen md:w-4/5 flex flex-col items-center pt-10 pb-20 relative overflow-hidden">
         <!-- Roadmap Timeline -->
         <div class="relative w-2/3 flex flex-col items-center bottom-0 -mt-28">
             <!-- Stage 4 -->
@@ -98,6 +98,38 @@
     
             <!-- Connecting Line -->
             <div id="stage1-line" class="w-1 h-[600px] bg-gray-500"></div>
+        </div>
+
+        <div class="fixed bottom-0 py-4 w-screen bg-[#6D2476] z-20 block md:hidden">
+            <nav class="flex items-center justify-around">
+                <div class="relative group">
+                    <a href="roadmap.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl ring-4 ring-[#D8D8F6] hover:bg-[#561D5E] rounded-full p-4 transition-colors duration-300">
+                        <img src="assets/images/bookmark.svg" alt="Learn Icon" class="w-4/5">
+                        <span class="hidden lg:block">Learn</span>
+                    </a>
+                    <div class="absolute left-[70px] md:left-[-30px] lg:left-20 hidden group-hover:block md:group-hover:bg-[#D8D8F6] text-[#6D2476] rounded-md px-2 py-1 text-sm md:text-base shadow-lg">
+                        Learn
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="leaderboard.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-2xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-4 transition-colors duration-300">
+                        <img src="assets/images/medal.svg" alt="Leaderboard Icon" class="w-4/5">
+                        <span class="hidden lg:block">Leaderboard</span>
+                    </a>
+                    <div class="absolute left-[70px] md:left-[-50px] lg:left-20 hidden group-hover:block md:group-hover:bg-[#D8D8F6] text-[#6D2476] rounded-md px-2 py-1 text-sm md:text-base shadow-lg">
+                        Leaderboard
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="profile.html" class="flex items-center justify-center lg:justify-normal space-x-3 text-3xl hover:bg-[#D8D8F6] hover:text-[#6D2476] rounded-full p-4 transition-colors duration-300">
+                        <img src="assets/images/profile.svg" alt="Profile Icon" class="w-4/5">
+                        <span class="hidden lg:block">Profile</span>
+                    </a>
+                    <div class="absolute left-[70px] md:left-[-45px] lg:left-20 hidden group-hover:block md:group-hover:bg-[#D8D8F6] text-[#6D2476] rounded-md px-2 py-1 text-sm md:text-base shadow-lg">
+                        Profile
+                    </div>
+                </div>
+            </nav>
         </div>
     
         <!-- Background Factory -->
