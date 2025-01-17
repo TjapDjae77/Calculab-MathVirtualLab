@@ -84,10 +84,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     await ensureValidAccessToken(); // Pastikan token valid sebelum memuat data profil
     fetchProfile();
 
-    const logoutButton = document.getElementById('logoutButton');
+    // Ambil semua elemen dengan kelas 'logoutButton'
+    const logoutButtons = document.querySelectorAll('.logoutButton');
 
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function (event) {
+    // Loop melalui semua elemen dan tambahkan event listener
+    logoutButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
             event.preventDefault();
             
             // Hapus token dari localStorage
@@ -96,5 +98,5 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Redirect ke halaman landing page
             window.location.href = 'index.html';
         });
-    }
+    });
 });
