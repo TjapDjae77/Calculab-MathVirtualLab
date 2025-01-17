@@ -1,0 +1,298 @@
+openapi: 3.0.0
+info:
+  title: Calculab API
+  description: API Documentation for Calculab project.
+  version: 1.0.0
+servers:
+  - url: https://calculab-backend.up.railway.app
+    description: Railway server
+paths:
+  /api/login/:
+    post:
+      summary: Obtain a JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "user123"
+                password:
+                  type: string
+                  example: "password123"
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Login successful
+                  data:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: user123
+                      token:
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR..."
+        '401':
+          description: Authentication failed
+  /api/token/refresh/:
+    post:
+      summary: Refresh JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh:
+                  type: string
+                  example: "eyJhbGciOiJIUzI1NiIsInR..."
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access:
+                    type: string
+                    example: "newAccessToken..."
+        '401':
+          description: Invalid or expired refresh token
+  /api/accounts/register/:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "newuser"
+                email:
+                  type: string
+                  example: "newuser@example.com"
+                password:
+                  type: string
+                  example: "securepassword123"
+                confirm_password:
+                  type: string
+                  example: "securepassword123"
+      responses:
+        '201':
+          description: User successfully registered
+        '400':
+          description: Validation error
+  /api/accounts/profile/:
+    get:
+      summary: Retrieve user profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          description: Authentication required
+  /api/accounts/update_score/:
+    post:
+      summary: Update user score
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score:
+                  type: integer
+                  example: 50
+      responses:
+        '200':
+          description: Score updated successfully
+        '401':
+          description: Authentication required
+  /api/levels/:
+    get:
+      summary: Retrieve all levels
+      responses:
+        '200':
+          description: List of levels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Level'
+  /api/levels/{level_id}/:
+    get:
+      summary: Retrieve details of a specific level
+      parameters:
+        - name: level_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the level to retrieve
+      responses:
+        '200':
+          description: Level details retrieved successfully
+        '404':
+          description: Level not found
+  /api/levels/complete/{level_number}/:
+    post:
+      summary: Mark level as completed
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: level_number
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The number of the level to mark as completed
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score:
+                  type: integer
+                  example: 100
+      responses:
+        '200':
+          description: Level marked as completed
+        '400':
+          description: Invalid score value
+        '404':
+          description: Level or profile not found
+  /api/questions/:
+    get:
+      summary: Retrieve all questions
+      responses:
+        '200':
+          description: List of questions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+  /api/questions/{question_id}/:
+    get:
+      summary: Retrieve details of a specific question
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the question to retrieve
+      responses:
+        '200':
+          description: Question details retrieved successfully
+        '404':
+          description: Question not found
+  /api/leaderboard/:
+    get:
+      summary: Retrieve the leaderboard
+      responses:
+        '200':
+          description: Top profiles based on scores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: "user123"
+                    score:
+                      type: integer
+                      example: 150
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Profile:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "user123"
+        email:
+          type: string
+          example: "user@example.com"
+        score:
+          type: integer
+          example: 150
+        completed_levels:
+          type: array
+          items:
+            type: integer
+    Level:
+      type: object
+      properties:
+        level_number:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Introduction to Functions"
+        description:
+          type: string
+          example: "Learn the basics of functions."
+    Question:
+      type: object
+      properties:
+        level:
+          type: integer
+          example: 1
+        premise1:
+          type: string
+          example: "Given the function f(x)..."
+        premise2:
+          type: string
+          example: "Input materials are steel and rubber."
+        material_input_checker:
+          type: string
+          example: "Check steel and rubber availability"
+        base_function:
+          type: string
+          example: "f(x) = x^2"
+        input_function_checker:
+          type: string
+          example: "Check if input function matches base."
+        output_material:
+          type: string
+          example: "Wing"

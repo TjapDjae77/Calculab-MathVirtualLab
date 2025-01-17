@@ -35,9 +35,9 @@ SECRET_KEY = os.getenv("SECRET_KEY", "default_value")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['calculab-backend.up.railway.app', 'localhost', '127.0.0.1', '103.82.93.43', 'api-calculab.my.id']
+# ALLOWED_HOSTS = ['calculab-backend.up.railway.app', 'localhost', '127.0.0.1', '103.82.93.43', 'api-calculab.my.id']
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # CSRF_TRUSTED_ORIGINS = ['https://calculab-backend.up.railway.app']
 
