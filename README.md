@@ -17,8 +17,8 @@ Welcome to the **Calculab Web** repository, part of the Calculab ecosystem. This
 - **Backend**: Django Rest Framework with JWT Authentication
 - **Database**: PostgreSQL (hosted on NeonDB)
 - **Hosting**: 
-  - Frontend: [Vercel](https://vercel.com/)
-  - Backend: [Railway](https://railway.app/)
+  - Frontend: [Vercel](https://calculab-math-virtual-lab.vercel.app/)
+  - Backend: [Railway](calculab-backend.up.railway.app)
 - **Containerization**: Docker
 
 ---
@@ -59,3 +59,6 @@ Welcome to the **Calculab Web** repository, part of the Calculab ecosystem. This
 4. Run the backend server:
    ```bash
    python manage.py runserver
+
+5. Access the application:
+- **Web App**: http://localhost:8000
