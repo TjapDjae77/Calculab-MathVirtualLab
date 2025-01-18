@@ -18,7 +18,7 @@ Welcome to the **Calculab Web** repository, part of the Calculab ecosystem. This
 - **Database**: PostgreSQL (hosted on NeonDB)
 - **Hosting**: 
   - Frontend: [Vercel](https://calculab-math-virtual-lab.vercel.app/)
-  - Backend: [Railway](calculab-backend.up.railway.app)
+  - Backend: [Railway](https://calculab-backend.up.railway.app)
 - **Containerization**: Docker
 
 ---
